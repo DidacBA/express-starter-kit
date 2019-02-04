@@ -4,9 +4,17 @@ const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
+// mongoose setup (mongodb://localhost:27017/name-of-database)
+
+mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true })
+  .then(() => console.log('connected'))
+  .catch(error => console.log('error', error));
 
 const app = express();
 
