@@ -11,10 +11,11 @@ const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
 // mongoose setup (mongodb://localhost:27017/name-of-database)
 
-mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/user-database', { useNewUrlParser: true })
   .then(() => console.log('connected'))
   .catch(error => console.log('error', error));
 
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 // express ejs layouts setup
 

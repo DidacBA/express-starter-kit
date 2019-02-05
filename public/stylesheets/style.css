@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+@media print {
+
+}
+
+@media screen and (min-width: 480px) {
+
+}
+
+@media screen and (min-width: 600px) {
+
+}
+
+@media screen and ()

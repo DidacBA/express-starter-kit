@@ -1,15 +1,16 @@
 
 const express = require('express');
-const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const router = express.Router();
 
 // BCrypt to encrypt passwords
 const bcryptSalt = 10;
 
 
 router.get('/signup', (req, res, next) => {
-  res.render('auth/signup');
+  const errorMessage = undefined;
+  res.render('auth/signup', { errorMessage });
 });
 
 router.post('/signup', (req, res, next) => {
@@ -28,16 +29,15 @@ router.post('/signup', (req, res, next) => {
     password: hashPass,
   }).then(() => {
     res.redirect('/');
-  }).catch((error) => {
-    next(error);
-  });
+  }).catch(next);
 });
 
 router.get('/login', (req, res, next) => {
-  res.render('auth/login');
+  const errorMessage = undefined;
+  res.render('auth/login', { errorMessage });
 });
 
-router.post('login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   const { username, password } = req.body;
 
   if (username === '' || password === '') {
